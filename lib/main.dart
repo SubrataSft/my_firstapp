@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:my_firstapp/screen2.dart';
 
 main() {
   runApp(const MyFirstApp());
+
+List<String> users =[
+  'Rahim',
+  'Karim',
+  'Lalu',
+  ];
+
 }
 
 class MyFirstApp extends StatelessWidget {
@@ -10,13 +18,14 @@ class MyFirstApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomeScreen(),
+      debugShowCheckedModeBanner: false,
+      home: screen2(),
     );
   }
 }
 
 String hello =
-    'Hello World 2 reajkjkfdhjsahf jdhfjaks fsd shf h jkjf jahdjkh jkjkfkf lkfjskfja ;askljf; kfjksdjfsdkj; jakj fk';
+    'Hello World 2 reajkjkfdhjsahf jdhfjaks  jakj fk';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -24,6 +33,18 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.red,
+        leading: Icon(Icons.menu,color: Colors.white,),
+        title: Text('title',style: TextStyle(color: Colors.white),),
+        actions: [
+          Icon(Icons.add_a_photo),
+          Icon(Icons.add_a_photo),
+          Icon(Icons.add_a_photo),
+          Icon(Icons.add_a_photo),
+        ],
+      ),
+      
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
