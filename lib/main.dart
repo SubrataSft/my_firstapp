@@ -17,9 +17,12 @@ class MyFirstApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: screen2(),
+      home: Screen2(),
+      theme:ThemeData(
+        useMaterial3: false
+      )
     );
   }
 }

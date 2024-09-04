@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class screen2 extends StatelessWidget {
-  const screen2({super.key});
+class Screen2 extends StatelessWidget {
+  Screen2({super.key});
+
+  TextEditingController emailTEController = TextEditingController();
+  GlobalKey<FormState> fromkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -108,30 +112,86 @@ class screen2 extends StatelessWidget {
               ],
             )
           ],
-        ),
-      ),
-      appBar: AppBar(
+      ),        ),
+
+    appBar: AppBar(
         backgroundColor: Colors.amber,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 50,
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Form(
+              key: fromkey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextFormField(
+                    validator: (value){
+                      if(value!.isEmpty){
+                        return "Type your mail";
+                      }
+                    },
+                    controller: emailTEController,
+                    maxLines: null,
+                    style: GoogleFonts.poppins(),
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.account_circle),
+                      suffixIcon: Icon(Icons.remove_red_eye),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(width: 2),
+                      ),
+                       hintText: 'Type your email',
+                    ),
                   ),
-                    onPressed: (){}, child: Text("Button",))),
-            TextButton(onPressed: (){}, child: Text("Button 2")),
-            OutlinedButton(onPressed: (){}, child: Text("OutlineButton"))
-          ],
+                  ElevatedButton(onPressed: (){
+                    if(
+                    fromkey.currentState!.validate()){
+                      emailTEController.clear();
+                    };
+                  }, child: Text("Submit")),
+                  Text("Subrata Singha",style: GoogleFonts.poppins(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w900,
+                  ),),
+                  SizedBox(
+                    height: 50,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green,
+                          foregroundColor: Colors.white,
+                        ),
+                          onPressed: (){}, child: Text("Button",))),
+                  TextButton(onPressed: (){}, child: Text("Button 2")),
+                  OutlinedButton(onPressed: (){}, child: Text("OutlineButton")),
+
+                ],
+              ),
+            ),
+          ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.green,
+        onPressed:(){
+
+          showModalBottomSheet(isScrollControlled: true,
+              context: context,
+              builder: (context){
+            return Container(
+              height: 800,
+            );
+          });
+
+        },child: Icon(Icons.add)),
     );
   }
 }
+
+
+
+
